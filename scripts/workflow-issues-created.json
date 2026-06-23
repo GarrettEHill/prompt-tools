@@ -1,0 +1,231 @@
+{
+  "epics": [
+    {
+      "key": "map",
+      "num": 19,
+      "title": "[Epic] Map \u2014 Understand workflows"
+    },
+    {
+      "key": "ship",
+      "num": 20,
+      "title": "[Epic] Ship \u2014 Release readiness workflows"
+    },
+    {
+      "key": "investigate",
+      "num": 21,
+      "title": "[Epic] Investigate \u2014 Failure and regression workflows"
+    },
+    {
+      "key": "transform",
+      "num": 22,
+      "title": "[Epic] Transform \u2014 Migration and change at scale"
+    },
+    {
+      "key": "review",
+      "num": 23,
+      "title": "[Epic] Review \u2014 Change-scoped judgment workflows"
+    },
+    {
+      "key": "generate",
+      "num": 24,
+      "title": "[Epic] Generate \u2014 Artifacts from truth"
+    },
+    {
+      "key": "govern",
+      "num": 25,
+      "title": "[Epic] Govern \u2014 Policy and hygiene workflows"
+    },
+    {
+      "key": "decide",
+      "num": 26,
+      "title": "[Epic] Decide \u2014 Explore without committing"
+    },
+    {
+      "key": "operate",
+      "num": 27,
+      "title": "[Epic] Operate \u2014 Runtime and production workflows"
+    },
+    {
+      "key": "communicate",
+      "num": 28,
+      "title": "[Epic] Communicate \u2014 Audience beyond the repo"
+    }
+  ],
+  "subs": [
+    {
+      "epic": "map",
+      "num": 29,
+      "title": "Add Repo archaeology pattern"
+    },
+    {
+      "epic": "map",
+      "num": 30,
+      "title": "Add Onboarding brief pattern"
+    },
+    {
+      "epic": "map",
+      "num": 31,
+      "title": "Add Decision archaeology pattern"
+    },
+    {
+      "epic": "map",
+      "num": 32,
+      "title": "Add Blast radius analysis pattern"
+    },
+    {
+      "epic": "ship",
+      "num": 33,
+      "title": "Add Release coordinator pattern"
+    },
+    {
+      "epic": "ship",
+      "num": 34,
+      "title": "Add Ship checklist pattern"
+    },
+    {
+      "epic": "ship",
+      "num": 35,
+      "title": "Add Rollback plan generator pattern"
+    },
+    {
+      "epic": "investigate",
+      "num": 36,
+      "title": "Add Regression hunt pattern"
+    },
+    {
+      "epic": "investigate",
+      "num": 37,
+      "title": "Add Incident coordinator pattern"
+    },
+    {
+      "epic": "investigate",
+      "num": 38,
+      "title": "Add Flake hunter pattern"
+    },
+    {
+      "epic": "investigate",
+      "num": 39,
+      "title": "Add Postmortem generator pattern"
+    },
+    {
+      "epic": "transform",
+      "num": 40,
+      "title": "Add Migration sweep pattern"
+    },
+    {
+      "epic": "transform",
+      "num": 41,
+      "title": "Add Deprecation enforcer pattern"
+    },
+    {
+      "epic": "transform",
+      "num": 42,
+      "title": "Add Codemod coordinator pattern"
+    },
+    {
+      "epic": "transform",
+      "num": 43,
+      "title": "Add Config drift fix pattern"
+    },
+    {
+      "epic": "review",
+      "num": 44,
+      "title": "Add PR review personas system"
+    },
+    {
+      "epic": "review",
+      "num": 45,
+      "title": "Add Design review pattern"
+    },
+    {
+      "epic": "review",
+      "num": 46,
+      "title": "Add Dependency review pattern"
+    },
+    {
+      "epic": "generate",
+      "num": 47,
+      "title": "Add Doc sync pattern"
+    },
+    {
+      "epic": "generate",
+      "num": 48,
+      "title": "Add Runbook generator pattern"
+    },
+    {
+      "epic": "generate",
+      "num": 49,
+      "title": "Add Changelog from reality pattern"
+    },
+    {
+      "epic": "generate",
+      "num": 50,
+      "title": "Add OpenAPI drift fix (generative) pattern"
+    },
+    {
+      "epic": "govern",
+      "num": 51,
+      "title": "Add OSS hygiene pattern"
+    },
+    {
+      "epic": "govern",
+      "num": 52,
+      "title": "Add Label/policy enforcement pattern"
+    },
+    {
+      "epic": "govern",
+      "num": 53,
+      "title": "Add Secret rotation sweep pattern"
+    },
+    {
+      "epic": "govern",
+      "num": 54,
+      "title": "Add License policy gate pattern"
+    },
+    {
+      "epic": "decide",
+      "num": 55,
+      "title": "Add Spike coordinator pattern"
+    },
+    {
+      "epic": "decide",
+      "num": 56,
+      "title": "Add Build vs buy pattern"
+    },
+    {
+      "epic": "decide",
+      "num": 57,
+      "title": "Add Threat modeling lite pattern"
+    },
+    {
+      "epic": "operate",
+      "num": 58,
+      "title": "Add Deploy smoke coordinator pattern"
+    },
+    {
+      "epic": "operate",
+      "num": 59,
+      "title": "Add SLO/error budget review pattern"
+    },
+    {
+      "epic": "operate",
+      "num": 60,
+      "title": "Add Cost review pattern"
+    },
+    {
+      "epic": "communicate",
+      "num": 61,
+      "title": "Add Executive brief pattern"
+    },
+    {
+      "epic": "communicate",
+      "num": 62,
+      "title": "Add Umbrella issue composer pattern"
+    },
+    {
+      "epic": "communicate",
+      "num": 63,
+      "title": "Add Stakeholder status pattern"
+    }
+  ]
+}
