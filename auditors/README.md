@@ -1,43 +1,49 @@
 # Auditor Personas
 
-Focused, composable audit specialties. Each persona is a concise prompt that flavors [`disposable-auditor`](../../patterns/disposable-auditor/).
+Focused, composable audit specialties. Each persona flavors [`disposable-auditor`](../../patterns/disposable-auditor/).
+
+## Organization
+
+Personas are grouped by **class** for long-term management:
+
+- [`persona-classes.md`](persona-classes.md) — taxonomy and selection by class
+- [`classes/`](classes/) — index per class (security, infrastructure, …)
+- [`persona-catalog.md`](persona-catalog.md) — full catalog with project shortcuts
+- [`persona-composition.md`](persona-composition.md) — combine 1–3 personas per run
+
+Paths stay flat: `auditors/<persona>/persona.md`.
 
 ## Concept
 
 ```text
 coordinator
-  → spawns disposable auditor #1 with personas [ci-cd]
-  → spawns disposable auditor #2 with personas [dependency-supply-chain, secrets-hygiene]
-  → spawns disposable auditor #3 with personas [static-analysis-ingest]
+  → audit plan: classes [security, infrastructure] → expand to personas
+  → auditor run 1: [ci-cd, secrets-hygiene]
+  → auditor run 2: [container-runtime-hardening, network-segmentation-policy]
 ```
 
-- **N auditors** = N tight parallel or serial runs
-- **X personas each** = combined expertise without one mega-prompt
-- Each persona stays small and refinable independently
+- **24 personas** across **8 classes**
+- **N auditors** × **1–3 personas** each = tight, valuable runs
 
-## Files
+## Classes
 
-- [`persona-catalog.md`](persona-catalog.md) — all personas and compatibility
-- [`persona-composition.md`](persona-composition.md) — how coordinators combine personas
+| Class | Count | Index |
+|-------|-------|-------|
+| ingest | 1 | [`classes/ingest.md`](classes/ingest.md) |
+| security | 6 | [`classes/security.md`](classes/security.md) |
+| infrastructure | 6 | [`classes/infrastructure.md`](classes/infrastructure.md) |
+| architecture | 4 | [`classes/architecture.md`](classes/architecture.md) |
+| quality | 2 | [`classes/quality.md`](classes/quality.md) |
+| contracts | 3 | [`classes/contracts.md`](classes/contracts.md) |
+| safety-critical | 1 | [`classes/safety-critical.md`](classes/safety-critical.md) |
+| compliance | 1 | [`classes/compliance.md`](classes/compliance.md) |
 
-## Personas
-
-| Persona | Path |
-|---------|------|
-| Static analysis ingest | [`static-analysis-ingest/persona.md`](static-analysis-ingest/persona.md) |
-| Dependency supply chain | [`dependency-supply-chain/persona.md`](dependency-supply-chain/persona.md) |
-| Secrets hygiene | [`secrets-hygiene/persona.md`](secrets-hygiene/persona.md) |
-| CI/CD | [`ci-cd/persona.md`](ci-cd/persona.md) |
-| Test quality | [`test-quality/persona.md`](test-quality/persona.md) |
-| Documentation accuracy | [`documentation-accuracy/persona.md`](documentation-accuracy/persona.md) |
-| Architecture boundaries | [`architecture-boundaries/persona.md`](architecture-boundaries/persona.md) |
-| Auth & session | [`auth-session/persona.md`](auth-session/persona.md) |
-
-## Where personas belong
+## Where things belong
 
 | Type | Location | Example |
 |------|----------|---------|
-| Persona | `auditors/<name>/persona.md` | ci-cd checks |
+| Persona | `auditors/<name>/persona.md` | `ci-cd` |
+| Class index | `auditors/classes/<class>.md` | `security` |
 | Auditor shell | `patterns/disposable-auditor/` | read-only behavior |
 | Coordinator | `patterns/divide-and-conquer-audit/` | spawn plan |
-| Project config | `adapters/full-repository-audit/` | which personas for this repo |
+| Project config | `adapters/full-repository-audit/` | class/persona selection |

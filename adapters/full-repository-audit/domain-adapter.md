@@ -11,8 +11,8 @@ Scope discovery overrides:
 - Sonar via `static-analysis-ingest` persona only (ingest-existing)
 
 Persona assignment:
-- see `auditors/persona-catalog.md` default 7-run plan
-- coordinator may combine personas per `persona-composition.md`
+- select by **class** and/or persona name — see `auditors/persona-classes.md`
+- default run plan in `audit-domains.md`; expand for Xyberus, robotics, MCP, monorepo per `persona-catalog.md` project shortcuts
 
 Tooling available:
 - SonarQube/SonarCloud via GitHub issues and checks

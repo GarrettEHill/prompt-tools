@@ -57,6 +57,18 @@ audit_runs:
     personas: [architecture-boundaries, test-quality]
 ```
 
+## Selecting personas
+
+By name (1–3 per run) or by **class** — see [`auditors/persona-classes.md`](../../auditors/persona-classes.md):
+
+```yaml
+audit_runs:
+  - boundary: ".github/workflows/"
+    personas: [ci-cd, secrets-hygiene]
+  - boundary: "compose/"
+    classes: [infrastructure]  # expand via classes/infrastructure.md
+```
+
 ## Spawn prompt template
 
 ```text
@@ -64,18 +76,10 @@ audit_runs:
 
 Repository: <owner/repo>
 Boundary: <paths or scope>
-Plan entry: <link or inline>
 
-Base:
-- patterns/disposable-auditor/disposable-auditor.md
-
-Personas (apply all):
-- auditors/<persona-a>/persona.md
-- auditors/<persona-b>/persona.md
-
-Output:
-- compact-auditor-result per schema
-- tag findings with persona field
+Base: patterns/disposable-auditor/disposable-auditor.md
+Personas: auditors/<persona>/persona.md (1–3)
+Output: compact-auditor-result; tag persona + class on each finding
 ```
 
 ## Split vs combine decision

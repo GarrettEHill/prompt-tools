@@ -1,5 +1,6 @@
 # Persona: Auth & Session
 
+**Class:** security  
 **Domain:** `auth-session`  
 **Skip if:** repo has no auth/session code
 

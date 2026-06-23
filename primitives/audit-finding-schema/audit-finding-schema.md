@@ -5,6 +5,7 @@
 ```yaml
 id: AUDIT-001              # assigned at aggregation; auditors use temp local ids
 persona: ci-cd             # persona that produced the finding
+class: infrastructure      # persona class for filtering/labels
 domain: ci-cd              # audit domain tag
 title: string
 severity: critical | high | medium | low | informational

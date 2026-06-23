@@ -1,5 +1,6 @@
 # Persona: Dependency Supply Chain
 
+**Class:** security  
 **Domain:** `dependency-supply-chain`
 
 ## You inspect

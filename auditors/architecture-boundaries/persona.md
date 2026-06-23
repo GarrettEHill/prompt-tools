@@ -1,5 +1,6 @@
 # Persona: Architecture Boundaries
 
+**Class:** architecture  
 **Domain:** `architecture-boundaries`
 
 ## You inspect

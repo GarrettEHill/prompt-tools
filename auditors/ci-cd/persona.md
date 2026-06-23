@@ -1,5 +1,6 @@
 # Persona: CI/CD
 
+**Class:** infrastructure  
 **Domain:** `ci-cd`
 
 ## You inspect

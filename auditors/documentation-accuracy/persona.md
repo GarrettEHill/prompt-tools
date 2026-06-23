@@ -1,5 +1,6 @@
 # Persona: Documentation Accuracy
 
+**Class:** contracts  
 **Domain:** `documentation-accuracy`
 
 ## You inspect

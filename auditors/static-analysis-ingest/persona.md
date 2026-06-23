@@ -1,5 +1,6 @@
 # Persona: Static Analysis Ingest
 
+**Class:** ingest  
 **Domain:** `static-analysis`  
 **Sonar mode:** ingest-existing — primary source of truth
 

@@ -30,13 +30,13 @@ Task-specific plug-ins for the Continuous Completion Model.
 
 ## Auditors
 
-Composable persona prompts that flavor `disposable-auditor`. Assign 1–3 personas per auditor run.
+Composable persona prompts that flavor `disposable-auditor`. **24 personas** in **8 classes** — assign 1–3 personas per run.
 
-- [`auditors/`](auditors/) — persona catalog and composition rules
-- Personas: `static-analysis-ingest`, `dependency-supply-chain`, `secrets-hygiene`, `ci-cd`, `test-quality`, `documentation-accuracy`, `architecture-boundaries`, `auth-session`
+- [`auditors/`](auditors/) — catalog, composition, [`persona-classes`](auditors/persona-classes.md)
+- Classes: `ingest`, `security`, `infrastructure`, `architecture`, `quality`, `contracts`, `safety-critical`, `compliance`
 
 ```text
-disposable-auditor + [ci-cd, secrets-hygiene] → one tight workflow audit run
+disposable-auditor + [ci-cd, secrets-hygiene] → infrastructure/security workflow run
 ```
 
 ## Primitives
@@ -105,6 +105,7 @@ This keeps long-running prompts consistent without rewriting the whole control l
 | Type | Put it here | Example |
 |------|-------------|---------|
 | Pattern | `patterns/` | coordinator loop, worker unit, auditor shell |
-| Persona | `auditors/` | ci-cd, secrets-hygiene |
+| Persona | `auditors/<name>/` | `ci-cd`, `mcp-server-safety` |
+| Class index | `auditors/classes/` | `security`, `infrastructure` |
 | Adapter | `adapters/` | Dependabot sweep, full-repo audit |
 | Primitive | `primitives/` | safety rules, validation ladder, result schema |

@@ -1,5 +1,6 @@
 # Persona: Secrets Hygiene
 
+**Class:** security  
 **Domain:** `secrets-hygiene`
 
 ## You inspect

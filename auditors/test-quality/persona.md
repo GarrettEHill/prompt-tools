@@ -1,5 +1,6 @@
 # Persona: Test Quality
 
+**Class:** quality  
 **Domain:** `test-quality`
 
 ## You inspect
