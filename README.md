@@ -2,12 +2,12 @@
 
 Reusable prompts and workflow patterns for Cursor, Codex-style agents, and GitHub-connected automation.
 
-## Quick start — audit a repo in Cursor
+## Quick start — audit any repo in Cursor
 
-1. Open the **target repo** in Cursor.
-2. Paste [`prompts/run-repository-audit.md`](prompts/run-repository-audit.md) (~25 lines).
-3. Fill **Config** — agent loads [`prompts/manifests/audit-manifest.md`](prompts/manifests/audit-manifest.md) and pulls patterns/personas as it runs.
-4. After audit, paste [`prompts/run-audit-remediation.md`](prompts/run-audit-remediation.md) with the handoff block.
+1. Open the **target repo** in Cursor (nothing from prompt-tools goes in that repo).
+2. Paste the audit block from [`prompts/SNIPPET.md`](prompts/SNIPPET.md) — change `repo:` and flags only.
+3. Agent fetches latest [`prompts/bootstrap-audit.md`](prompts/bootstrap-audit.md) from `main` and runs.
+4. After audit, paste the remediate block from `SNIPPET.md`.
 
 ## Patterns
 
