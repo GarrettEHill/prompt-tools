@@ -2,12 +2,62 @@
 
 Reusable prompts and workflow patterns for Cursor, Codex-style agents, and GitHub-connected automation.
 
-## Quick start — audit any repo in Cursor
+## Primary use case — audit any repo from Cursor
 
-1. Open the **target repo** in Cursor (nothing from prompt-tools goes in that repo).
-2. Paste the audit block from [`prompts/SNIPPET.md`](prompts/SNIPPET.md) — change `repo:` and flags only.
-3. Agent fetches latest [`prompts/bootstrap-audit.md`](prompts/bootstrap-audit.md) from `main` and runs.
-4. After audit, paste the remediate block from `SNIPPET.md`.
+**You do not add prompt-tools to the project you are auditing.** Open that repo in Cursor, paste a short snippet, and the agent fetches the **latest instructions from `main`** at run time.
+
+Save this and reuse it — only change `repo` and flags:
+
+```text
+Run a divide-and-conquer repo audit (latest prompt-tools).
+
+Fetch and fully execute:
+https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-audit.md
+
+Target: this workspace
+repo: <owner/repo>
+sonar: yes
+create_issues: yes
+reports: chat-only
+```
+
+After audit issues exist, remediate with:
+
+```text
+Remediate audit findings (latest prompt-tools).
+
+Fetch and fully execute:
+https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-remediate.md
+
+Target: this workspace
+repo: <owner/repo>
+```
+
+| | |
+|---|---|
+| **You paste** | ~6 lines (snippet above) |
+| **Agent fetches** | `bootstrap-audit.md` → manifest → patterns, personas, schemas |
+| **Target repo** | unchanged — no files copied in |
+| **Updates** | push to `main` here → next run uses new behavior automatically |
+
+More snippets: [`prompts/SNIPPET.md`](prompts/SNIPPET.md)
+
+### What the audit run does
+
+1. Discovers scope and builds an audit plan (personas by class)
+2. Runs read-only disposable auditors section by section
+3. Aggregates findings → executive + detailed reports
+4. Creates labeled GitHub issues (optional)
+5. Outputs a prioritized queue + handoff for remediation (CCM)
+
+SonarQube is ingested where present; this system covers CI, deps, secrets, infra, contracts, and more.
+
+## Quick start
+
+1. Open the **target repo** in Cursor.
+2. Paste the audit snippet above (or from [`prompts/SNIPPET.md`](prompts/SNIPPET.md)).
+3. Let the agent run — it pulls everything else from this repo on GitHub.
+4. Paste the remediate snippet when ready to fix findings.
 
 ## Patterns
 
@@ -115,5 +165,5 @@ This keeps long-running prompts consistent without rewriting the whole control l
 | Persona | `auditors/<name>/` | `ci-cd`, `mcp-server-safety` |
 | Class index | `auditors/classes/` | `security`, `infrastructure` |
 | Adapter | `adapters/` | Dependabot sweep, full-repo audit |
-| Operational prompt | `prompts/` | `run-repository-audit.md` |
+| Operational prompt | `prompts/` | [`SNIPPET.md`](prompts/SNIPPET.md), `bootstrap-audit.md` |
 | Primitive | `primitives/` | safety rules, validation ladder, result schema |
