@@ -26,6 +26,10 @@ It is useful for workflows like:
 - [`existing-pr-remediation`](../existing-pr-remediation/) — PR-native remediation
 - [`final-report`](../final-report/) — end-of-sweep report template
 
+## Upstream: audit handoff
+
+Audit-generated issues feed this pattern via [`divide-and-conquer-audit/ccm-handoff`](../divide-and-conquer-audit/ccm-handoff.md).
+
 ## Related primitives
 
 - [`git-github-safety`](../../primitives/git-github-safety/)

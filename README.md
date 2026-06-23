@@ -13,6 +13,7 @@ Orchestration loops and workflow units.
 - [`patterns/investigation-before-change`](patterns/investigation-before-change/) — read-only pass for ambiguous items
 - [`patterns/existing-pr-remediation`](patterns/existing-pr-remediation/) — fix open PRs without duplicates
 - [`patterns/final-report`](patterns/final-report/) — standardized end-of-sweep report
+- [`patterns/divide-and-conquer-audit`](patterns/divide-and-conquer-audit/) — discover, plan, audit, report, file issues, prioritize for CCM
 
 ## Adapters
 
@@ -24,6 +25,7 @@ Task-specific plug-ins for the Continuous Completion Model.
 - [`adapters/issue-label-normalization`](adapters/issue-label-normalization/)
 - [`adapters/docs-backlog-cleanup`](adapters/docs-backlog-cleanup/)
 - [`adapters/code-quality-lint-sweep`](adapters/code-quality-lint-sweep/)
+- [`adapters/full-repository-audit`](adapters/full-repository-audit/) — comprehensive audit beyond SonarQube
 
 ## Primitives
 
@@ -34,6 +36,26 @@ Shared rules and schemas used by multiple patterns.
 - [`primitives/compact-result-schema`](primitives/compact-result-schema/) — worker-to-coordinator return format
 - [`primitives/stop-blocker-decision-tree`](primitives/stop-blocker-decision-tree/) — skip item vs stop sweep
 - [`primitives/false-positive-adjudication`](primitives/false-positive-adjudication/) — fix vs suppress decisions
+- [`primitives/audit-finding-schema`](primitives/audit-finding-schema/) — audit finding and auditor result format
+
+## Audit → remediate pipeline
+
+```text
+live-state-refresh
++ divide-and-conquer-audit
++ disposable-auditor
++ audit-finding-schema
++ full-repository-audit (or custom adapter)
+  → executive + detailed reports
+  → GitHub issues with labels
+  → priority queue
++ ccm-handoff
++ continuous-completion-model
++ disposable-worker
+  → fix, validate, merge, close
+```
+
+SonarQube covers static analysis well. The audit pattern identifies **what else to inspect**, plans **how** each section is audited, aggregates results, files issues, and outputs a prioritized queue for remediation.
 
 ## How to compose
 
