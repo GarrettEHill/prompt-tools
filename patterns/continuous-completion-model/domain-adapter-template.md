@@ -97,3 +97,5 @@ Completion criteria:
 - PR passes required validation and GitHub/Sonar checks where available.
 - Related GitHub issue is closed only after merged work fully resolves it.
 ```
+
+For false-positive decisions, use [`primitives/false-positive-adjudication`](../../primitives/false-positive-adjudication/).
