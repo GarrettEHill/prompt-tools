@@ -2,6 +2,13 @@
 
 Reusable prompts and workflow patterns for Cursor, Codex-style agents, and GitHub-connected automation.
 
+## Quick start — audit a repo in Cursor
+
+1. Open the **target repo** in Cursor.
+2. Copy [`prompts/run-repository-audit.md`](prompts/run-repository-audit.md) into an agent prompt.
+3. Fill in Configuration (`owner/repo`, Sonar yes/no, create issues yes/no).
+4. After audit, use [`prompts/run-audit-remediation.md`](prompts/run-audit-remediation.md) with the CCM handoff block.
+
 ## Patterns
 
 Orchestration loops and workflow units.
@@ -108,4 +115,5 @@ This keeps long-running prompts consistent without rewriting the whole control l
 | Persona | `auditors/<name>/` | `ci-cd`, `mcp-server-safety` |
 | Class index | `auditors/classes/` | `security`, `infrastructure` |
 | Adapter | `adapters/` | Dependabot sweep, full-repo audit |
+| Operational prompt | `prompts/` | `run-repository-audit.md` |
 | Primitive | `primitives/` | safety rules, validation ladder, result schema |
