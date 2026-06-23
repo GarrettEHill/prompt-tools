@@ -40,7 +40,17 @@ repo: <owner/repo>
 | **Target repo** | unchanged — no files copied in |
 | **Updates** | push to `main` here → next run uses new behavior automatically |
 
-More snippets: [`prompts/SNIPPET.md`](prompts/SNIPPET.md)
+More snippets: [`prompts/SNIPPET.md`](prompts/SNIPPET.md) — audit, map, review PR
+
+### Other remote workflows
+
+| Workflow | Bootstrap URL |
+|----------|----------------|
+| Map repo | `prompts/bootstrap-map-archaeology.md` |
+| Onboarding brief | `prompts/bootstrap-map-onboarding.md` |
+| Review PR | `prompts/bootstrap-review-pr.md` |
+
+Full library roadmap: [#64](https://github.com/GarrettEHill/prompt-tools/issues/64) · [`docs/WORKFLOW_ROADMAP.md`](docs/WORKFLOW_ROADMAP.md)
 
 ### What the audit run does
 
@@ -72,6 +82,11 @@ Orchestration loops and workflow units.
 - [`patterns/existing-pr-remediation`](patterns/existing-pr-remediation/) — fix open PRs without duplicates
 - [`patterns/final-report`](patterns/final-report/) — standardized end-of-sweep report
 - [`patterns/divide-and-conquer-audit`](patterns/divide-and-conquer-audit/) — discover, plan, audit, report, file issues, prioritize for CCM
+- [`patterns/repo-archaeology`](patterns/repo-archaeology/) — read-only repo map before audit or change
+- [`patterns/onboarding-brief`](patterns/onboarding-brief/) — onboarding brief generator
+- [`patterns/decision-archaeology`](patterns/decision-archaeology/) — decision register
+- [`patterns/blast-radius`](patterns/blast-radius/) — change impact map
+- [`patterns/pr-review`](patterns/pr-review/) — composable PR review personas
 
 ## Adapters
 
@@ -96,6 +111,11 @@ Composable persona prompts that flavor `disposable-auditor`. **24 personas** in 
 disposable-auditor + [ci-cd, secrets-hygiene] → infrastructure/security workflow run
 ```
 
+## Mappers & reviewers
+
+- [`mappers/`](mappers/) — map workflow specialists (api-surface, data-flow, deploy-topology)
+- [`reviewers/`](reviewers/) — PR review personas (security, api-compat, tests, design, deps)
+
 ## Primitives
 
 Shared rules and schemas used by multiple patterns.
@@ -106,6 +126,9 @@ Shared rules and schemas used by multiple patterns.
 - [`primitives/stop-blocker-decision-tree`](primitives/stop-blocker-decision-tree/) — skip item vs stop sweep
 - [`primitives/false-positive-adjudication`](primitives/false-positive-adjudication/) — fix vs suppress decisions
 - [`primitives/audit-finding-schema`](primitives/audit-finding-schema/) — audit finding and auditor result format
+- [`primitives/map-result-schema`](primitives/map-result-schema/) — map workflow output
+- [`primitives/decision-record-schema`](primitives/decision-record-schema/) — decision register
+- [`primitives/review-result-schema`](primitives/review-result-schema/) — PR review output
 
 ## Audit → remediate pipeline
 
@@ -163,6 +186,8 @@ This keeps long-running prompts consistent without rewriting the whole control l
 |------|-------------|---------|
 | Pattern | `patterns/` | coordinator loop, worker unit, auditor shell |
 | Persona | `auditors/<name>/` | `ci-cd`, `mcp-server-safety` |
+| Mapper | `mappers/<name>/` | `api-surface-mapper` |
+| Reviewer | `reviewers/<name>/` | `security-reviewer` |
 | Class index | `auditors/classes/` | `security`, `infrastructure` |
 | Adapter | `adapters/` | Dependabot sweep, full-repo audit |
 | Operational prompt | `prompts/` | [`SNIPPET.md`](prompts/SNIPPET.md), `bootstrap-audit.md` |

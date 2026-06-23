@@ -42,3 +42,49 @@ Fetch https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/b
 ```
 
 Change only `repo` and flags between runs. Personas, phases, and schemas load from prompt-tools at runtime.
+
+---
+
+## Map — repo archaeology
+
+```text
+Map this repo (latest prompt-tools).
+
+Fetch and fully execute:
+https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-map-archaeology.md
+
+Target: this workspace
+repo: <owner/repo>
+```
+
+## Map — onboarding brief
+
+```text
+Fetch https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-map-onboarding.md
+Target: this workspace
+repo: <owner/repo>
+```
+
+## Map — blast radius
+
+```text
+Fetch https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-map-blast-radius.md
+Target: this workspace
+repo: <owner/repo>
+target: <path or symbol>
+```
+
+---
+
+## Review PR
+
+```text
+Review PR (latest prompt-tools).
+
+Fetch and fully execute:
+https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-review-pr.md
+
+Target: this workspace
+repo: <owner/repo>
+pr: <number>
+```
