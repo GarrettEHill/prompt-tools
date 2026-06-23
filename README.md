@@ -5,9 +5,9 @@ Reusable prompts and workflow patterns for Cursor, Codex-style agents, and GitHu
 ## Quick start — audit a repo in Cursor
 
 1. Open the **target repo** in Cursor.
-2. Copy [`prompts/run-repository-audit.md`](prompts/run-repository-audit.md) into an agent prompt.
-3. Fill in Configuration (`owner/repo`, Sonar yes/no, create issues yes/no).
-4. After audit, use [`prompts/run-audit-remediation.md`](prompts/run-audit-remediation.md) with the CCM handoff block.
+2. Paste [`prompts/run-repository-audit.md`](prompts/run-repository-audit.md) (~25 lines).
+3. Fill **Config** — agent loads [`prompts/manifests/audit-manifest.md`](prompts/manifests/audit-manifest.md) and pulls patterns/personas as it runs.
+4. After audit, paste [`prompts/run-audit-remediation.md`](prompts/run-audit-remediation.md) with the handoff block.
 
 ## Patterns
 

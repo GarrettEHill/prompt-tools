@@ -1,27 +1,29 @@
 # Prompts
 
-Copy-paste prompts for Cursor agent sessions.
+Lean bootstraps that **load** instructions from this repo at runtime.
 
 ## Audit pipeline
 
-1. **[`run-repository-audit.md`](run-repository-audit.md)** — run on target repo: discover, audit, report, file issues, prioritize
-2. **[`run-audit-remediation.md`](run-audit-remediation.md)** — run on same repo after audit: fix issues via CCM
+| Paste this | Loads |
+|------------|-------|
+| [`run-repository-audit.md`](run-repository-audit.md) | [`manifests/audit-manifest.md`](manifests/audit-manifest.md) → patterns, auditors, adapters |
+| [`run-audit-remediation.md`](run-audit-remediation.md) | [`manifests/remediation-manifest.md`](manifests/remediation-manifest.md) → CCM patterns |
 
 ## Usage
 
-1. Open the **target repository** in Cursor (not prompt-tools).
-2. Open Composer/Agent and paste the full contents of `run-repository-audit.md`.
-3. Fill in the **Configuration** section at the top.
-4. After audit completes, paste `run-audit-remediation.md` with the CCM handoff block.
+1. Open **target repo** in Cursor.
+2. Paste `run-repository-audit.md`; fill **Config** (3–6 lines).
+3. Agent resolves `prompt_tools` (local clone best: `@prompt-tools/...`).
+4. Agent loads manifest + phase files as it runs.
+5. After audit, paste `run-audit-remediation.md` with handoff block.
 
-## Prompt-tools access
+## Why manifests
 
-The agent needs persona/pattern content from this repo. Either:
+Keeps paste prompts small. Personas, schemas, and phase rules stay in `patterns/`, `auditors/`, `primitives/` — single source of truth.
 
-- `@` mention a local clone of `GarrettEHill/prompt-tools`, or
-- let the agent fetch from `https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/...`
+## Resolve paths
 
-## Related
-
-- [`patterns/divide-and-conquer-audit`](../patterns/divide-and-conquer-audit/)
-- [`auditors/`](../auditors/)
+```text
+Local:  C:\Users\garre\prompt-tools\patterns\...
+Remote: https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/patterns/...
+```
