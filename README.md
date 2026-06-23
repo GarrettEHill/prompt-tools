@@ -8,6 +8,7 @@ Orchestration loops and workflow units.
 
 - [`patterns/continuous-completion-model`](patterns/continuous-completion-model/) — coordinator + disposable worker loop for item-by-item sweeps
 - [`patterns/disposable-worker`](patterns/disposable-worker/) — handle one work item in isolation
+- [`patterns/disposable-auditor`](patterns/disposable-auditor/) — read-only audit shell; flavor with personas
 - [`patterns/work-item-decomposition`](patterns/work-item-decomposition/) — split broad goals into worker-sized items
 - [`patterns/live-state-refresh`](patterns/live-state-refresh/) — preflight checklist before acting
 - [`patterns/investigation-before-change`](patterns/investigation-before-change/) — read-only pass for ambiguous items
@@ -27,6 +28,17 @@ Task-specific plug-ins for the Continuous Completion Model.
 - [`adapters/code-quality-lint-sweep`](adapters/code-quality-lint-sweep/)
 - [`adapters/full-repository-audit`](adapters/full-repository-audit/) — comprehensive audit beyond SonarQube
 
+## Auditors
+
+Composable persona prompts that flavor `disposable-auditor`. Assign 1–3 personas per auditor run.
+
+- [`auditors/`](auditors/) — persona catalog and composition rules
+- Personas: `static-analysis-ingest`, `dependency-supply-chain`, `secrets-hygiene`, `ci-cd`, `test-quality`, `documentation-accuracy`, `architecture-boundaries`, `auth-session`
+
+```text
+disposable-auditor + [ci-cd, secrets-hygiene] → one tight workflow audit run
+```
+
 ## Primitives
 
 Shared rules and schemas used by multiple patterns.
@@ -44,6 +56,7 @@ Shared rules and schemas used by multiple patterns.
 live-state-refresh
 + divide-and-conquer-audit
 + disposable-auditor
++ auditors/<persona> (+ optional personas)
 + audit-finding-schema
 + full-repository-audit (or custom adapter)
   → executive + detailed reports
@@ -91,6 +104,7 @@ This keeps long-running prompts consistent without rewriting the whole control l
 
 | Type | Put it here | Example |
 |------|-------------|---------|
-| Pattern | `patterns/` | coordinator loop, worker unit, investigation flow |
-| Adapter | `adapters/` | Dependabot sweep, Sonar cleanup |
+| Pattern | `patterns/` | coordinator loop, worker unit, auditor shell |
+| Persona | `auditors/` | ci-cd, secrets-hygiene |
+| Adapter | `adapters/` | Dependabot sweep, full-repo audit |
 | Primitive | `primitives/` | safety rules, validation ladder, result schema |

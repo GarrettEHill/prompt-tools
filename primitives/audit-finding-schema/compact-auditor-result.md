@@ -7,6 +7,7 @@ Return to the audit coordinator after each section. One screenful max.
 ```yaml
 audit_section:
   domain: string
+  personas: [string]       # personas applied in this run
   status: completed | blocked | partial
 summary: string
 findings:

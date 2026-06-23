@@ -7,10 +7,12 @@ Audit goal:
 - Identify security, reliability, maintainability, and operational gaps across the repository; file prioritized GitHub issues for remediation via CCM.
 
 Scope discovery overrides:
-- include: dependency-supply-chain, secrets-hygiene, ci-cd, test-quality, documentation-accuracy, architecture-boundaries, error-handling-observability, configuration-drift
-- include: static-analysis in **ingest-existing** mode when SonarQube/SonarCloud is active
-- exclude: performance-hotspots unless adapter extended — skip with reason if not applicable
-- exclude: license-compliance if no scanner available — mark audit-blocked
+- use persona run plan from `audit-domains.md`
+- Sonar via `static-analysis-ingest` persona only (ingest-existing)
+
+Persona assignment:
+- see `auditors/persona-catalog.md` default 7-run plan
+- coordinator may combine personas per `persona-composition.md`
 
 Tooling available:
 - SonarQube/SonarCloud via GitHub issues and checks

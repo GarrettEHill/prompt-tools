@@ -17,8 +17,8 @@ SonarQube covers static analysis well. This pattern covers **what else to audit*
 |-------|-----|--------|
 | 0. Preflight | [`live-state-refresh`](../live-state-refresh/) | continue/stop |
 | 1. Discover scope | [`audit-scope-discovery.md`](audit-scope-discovery.md) | audit domain list |
-| 2. Plan audits | [`audit-plan-template.md`](audit-plan-template.md) | per-domain audit plan |
-| 3. Execute audits | [`disposable-auditor.md`](disposable-auditor.md) | compact auditor results |
+| 2. Plan audits | [`audit-plan-template.md`](audit-plan-template.md) | per-section plan + persona assignment |
+| 3. Execute audits | [`disposable-auditor`](../disposable-auditor/) + [`auditors/`](../../auditors/) | compact auditor results |
 | 4. Aggregate | [`aggregation-and-reporting.md`](aggregation-and-reporting.md) | finding registry |
 | 5. Report | [`aggregation-and-reporting.md`](aggregation-and-reporting.md) | executive + detailed reports |
 | 6. File issues | [`issue-generation.md`](issue-generation.md) | labeled GitHub issues |
@@ -28,7 +28,8 @@ SonarQube covers static analysis well. This pattern covers **what else to audit*
 ## Files
 
 - [`divide-and-conquer-audit.md`](divide-and-conquer-audit.md) — main coordinator control loop
-- [`disposable-auditor.md`](disposable-auditor.md) — one audit section per worker
+- [`patterns/disposable-auditor`](../disposable-auditor/) — base auditor shell
+- [`auditors/`](../../auditors/) — composable persona prompts
 - [`audit-scope-discovery.md`](audit-scope-discovery.md) — identify what needs auditing
 - [`audit-plan-template.md`](audit-plan-template.md) — define how each section is audited
 - [`aggregation-and-reporting.md`](aggregation-and-reporting.md) — merge findings and write reports
@@ -49,6 +50,7 @@ SonarQube covers static analysis well. This pattern covers **what else to audit*
 live-state-refresh
 + divide-and-conquer-audit
 + disposable-auditor
++ auditors/<persona> (+ optional additional personas)
 + audit-finding-schema
 + <audit domain adapter>
 + issue-generation

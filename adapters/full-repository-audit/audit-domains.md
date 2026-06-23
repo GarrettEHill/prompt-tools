@@ -1,33 +1,34 @@
 # Full Repository Audit — Domain Catalog
 
-How each domain relates to SonarQube and what it adds.
+Persona-based audit runs. See [`auditors/persona-catalog.md`](../../auditors/persona-catalog.md) for composition rules.
 
-| Domain | Sonar overlap | Audit adds |
-|--------|---------------|------------|
-| `static-analysis` | **Primary Sonar domain** | Ingest open Sonar issues; gap-check for unscanned paths |
-| `dependency-supply-chain` | Partial (SCA rules) | CVE audit, unpinned deps, Dependabot posture, yanked crates |
-| `secrets-hygiene` | Partial (secret detection) | `.env` patterns, CI secret usage, git history signals |
-| `auth-session` | Partial (security hotspots) | End-to-end auth flow review, session/token handling |
-| `ci-cd` | Minimal | Workflow permissions, action pinning, required checks, deploy safety |
-| `test-quality` | Coverage metrics only | Missing critical tests, flaky patterns, untested error paths |
-| `architecture-boundaries` | Partial (coupling rules) | Module layering, circular deps, forbidden imports |
-| `documentation-accuracy` | None | README commands, API docs vs implementation |
-| `configuration-drift` | Minimal | env templates, feature flags, prod-only config in repo |
-| `error-handling-observability` | Partial (bug rules) | panic paths, swallowed errors, missing structured logs |
+| Domain | Persona | Sonar overlap |
+|--------|---------|---------------|
+| `static-analysis` | `static-analysis-ingest` | **Primary Sonar domain** — ingest only |
+| `dependency-supply-chain` | `dependency-supply-chain` | Partial SCA |
+| `secrets-hygiene` | `secrets-hygiene` | Partial secret detection |
+| `auth-session` | `auth-session` | Partial hotspots |
+| `ci-cd` | `ci-cd` + `secrets-hygiene` | Minimal |
+| `test-quality` | `test-quality` | Coverage only |
+| `architecture-boundaries` | `architecture-boundaries` | Partial coupling |
+| `documentation-accuracy` | `documentation-accuracy` | None |
+| `configuration-drift` | `secrets-hygiene` | Minimal |
+| `error-handling-observability` | `test-quality` (partial) | Partial bug rules |
 
-## Recommended audit order
+## Recommended auditor runs
 
-1. `static-analysis` (ingest Sonar — establishes baseline)
-2. `dependency-supply-chain`
-3. `secrets-hygiene`
-4. `ci-cd`
-5. `auth-session` (if applicable)
-6. `test-quality`
-7. `architecture-boundaries`
-8. `documentation-accuracy`
-9. `error-handling-observability`
-10. `configuration-drift`
+| Run | Personas | Boundary |
+|-----|----------|----------|
+| 1 | `static-analysis-ingest` | repo-wide issue ingest |
+| 2 | `dependency-supply-chain` | manifests + lockfiles |
+| 3 | `secrets-hygiene` | env templates, config sample |
+| 4 | `ci-cd`, `secrets-hygiene` | `.github/workflows/` |
+| 5 | `auth-session` | auth modules (skip if N/A) |
+| 6 | `test-quality`, `architecture-boundaries` | main source tree |
+| 7 | `documentation-accuracy` | README + docs |
+
+Adjust N runs by repo size — split or merge per [`persona-composition.md`](../../auditors/persona-composition.md).
 
 ## When to skip
 
-Document skipped domains in the executive report with reason.
+Document skipped personas/runs in the executive report with reason.

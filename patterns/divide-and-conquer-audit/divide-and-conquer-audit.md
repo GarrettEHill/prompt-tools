@@ -12,15 +12,15 @@ It must:
 
 1. Refresh live project state before starting.
 2. **Discover audit scope** — identify domains/sections that need auditing (see [`audit-scope-discovery.md`](audit-scope-discovery.md)).
-3. **Build an audit plan** — for each domain, define method, evidence sources, and pass/fail criteria (see [`audit-plan-template.md`](audit-plan-template.md)).
-4. Select exactly one audit domain/section at a time.
-5. Spawn a fresh disposable auditor for that one section.
+3. **Build an audit plan** — for each section: boundary, personas (1–3), method, evidence, criteria (see [`audit-plan-template.md`](audit-plan-template.md) and [`auditors/persona-composition.md`](../../auditors/persona-composition.md)).
+4. Select exactly one audit section (one auditor run) at a time.
+5. Spawn a fresh disposable auditor flavored with the assigned persona(s).
 6. Give the auditor only minimal context:
 
    - repository/project
-   - selected audit domain and plan entry
-   - evidence sources and tools available
-   - finding severity rubric
+   - section boundary
+   - persona prompt(s) from `auditors/`
+   - plan entry overrides (tools, severity)
    - read-only safety rules
 
 7. After the auditor finishes, discard the auditor context.
@@ -42,7 +42,7 @@ If real subagents are unavailable, simulate by treating each audit section as an
 
 ## Auditor Responsibilities
 
-Each auditor handles exactly one planned audit section. See [`disposable-auditor.md`](disposable-auditor.md).
+Each auditor handles exactly one planned section. See [`patterns/disposable-auditor`](../disposable-auditor/) flavored with persona(s) from [`auditors/`](../../auditors/).
 
 Auditors are **read-only** unless the domain adapter explicitly allows issue creation in a later phase. During audit execution:
 

@@ -5,19 +5,23 @@ Phase 2: for each scoped domain, define **how** it will be audited.
 Append or fill one block per domain.
 
 ```text
-## Audit Plan: <domain name>
+## Audit Plan: <section id>
 
 Repository/project:
 - <owner/repo or path>
 
-Domain:
-- <e.g. dependency-supply-chain>
+Section boundary:
+- <paths, workflows, packages — tight scope for one auditor run>
 
-Boundary:
-- <directories, workflows, packages included/excluded>
+Personas (1–3):
+- <e.g. ci-cd, secrets-hygiene>
+- see auditors/persona-catalog.md
+
+Domain tags:
+- <primary domain labels for findings>
 
 Objective:
-- <what risk or quality question this audit answers>
+- <what risk question this run answers>
 
 Evidence sources:
 - <files, tools, APIs, issue searches>
@@ -64,14 +68,14 @@ Output:
 Repository/project:
 - GarrettEHill/Xyberus
 
-Domain:
+Section boundary:
+- Cargo.toml, Cargo.lock, crates/*/Cargo.toml
+
+Personas:
 - dependency-supply-chain
 
-Boundary:
-- Cargo workspace manifests and lockfiles; GitHub Dependabot alerts if visible
-
-Objective:
-- Identify vulnerable, unpinned, or unmaintained dependencies.
+Domain tags:
+- dependency-supply-chain, security
 
 Evidence sources:
 - Cargo.toml, Cargo.lock
@@ -112,16 +116,35 @@ Output:
 ## Example: static-analysis (Sonar ingest)
 
 ```text
-## Audit Plan: static-analysis
+## Audit Plan: github-workflows
 
-Domain:
-- static-analysis
+Section boundary:
+- .github/workflows/
 
-Boundary:
-- SonarQube/SonarCloud findings already posted to GitHub
+Personas:
+- ci-cd
+- secrets-hygiene
+
+Domain tags:
+- ci-cd, security
 
 Objective:
-- Inventory open Sonar findings; do not re-run full static analysis unless needed.
+- Review workflow permissions, action pinning, and secret handling.
+```
+
+## Example: static-analysis (Sonar ingest)
+
+```text
+## Audit Plan: sonar-ingest
+
+Section boundary:
+- repo-wide (issue search only)
+
+Personas:
+- static-analysis-ingest
+
+Domain tags:
+- static-analysis
 
 Evidence sources:
 - GitHub issues from Sonar

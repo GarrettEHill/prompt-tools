@@ -4,7 +4,8 @@
 
 ```yaml
 id: AUDIT-001              # assigned at aggregation; auditors use temp local ids
-domain: ci-cd              # audit domain
+persona: ci-cd             # persona that produced the finding
+domain: ci-cd              # audit domain tag
 title: string
 severity: critical | high | medium | low | informational
 location: string           # file, module, workflow, package
