@@ -55,7 +55,7 @@ repo: <owner/repo>
 epic: <issue-number>
 ```
 
-More snippets: [`prompts/SNIPPET.md`](prompts/SNIPPET.md) — audit, remediate, epic, map, review PR, ship
+More snippets: [`prompts/SNIPPET.md`](prompts/SNIPPET.md) — audit, remediate, epic, map, review, ship, investigate, communicate, transform, generate, govern, decide, operate
 
 ### Other remote workflows
 
@@ -68,6 +68,31 @@ More snippets: [`prompts/SNIPPET.md`](prompts/SNIPPET.md) — audit, remediate, 
 | Ship release | `prompts/bootstrap-ship-release.md` |
 | Ship checklist | `prompts/bootstrap-ship-checklist.md` |
 | Rollback plan | `prompts/bootstrap-ship-rollback.md` |
+| Regression hunt | `prompts/bootstrap-investigate-regression.md` |
+| Incident coordinator | `prompts/bootstrap-investigate-incident.md` |
+| Flake hunter | `prompts/bootstrap-investigate-flake.md` |
+| Postmortem | `prompts/bootstrap-investigate-postmortem.md` |
+| Executive brief | `prompts/bootstrap-communicate-executive.md` |
+| Umbrella composer | `prompts/bootstrap-communicate-umbrella.md` |
+| Stakeholder status | `prompts/bootstrap-communicate-status.md` |
+| Migration sweep | `prompts/bootstrap-transform-migration.md` |
+| Deprecation enforcer | `prompts/bootstrap-transform-deprecation.md` |
+| Codemod coordinator | `prompts/bootstrap-transform-codemod.md` |
+| Config drift fix | `prompts/bootstrap-transform-config-drift.md` |
+| Doc sync | `prompts/bootstrap-generate-doc-sync.md` |
+| Runbook generator | `prompts/bootstrap-generate-runbook.md` |
+| Changelog from reality | `prompts/bootstrap-generate-changelog.md` |
+| OpenAPI drift fix | `prompts/bootstrap-generate-openapi.md` |
+| OSS hygiene | `prompts/bootstrap-govern-oss.md` |
+| Label policy | `prompts/bootstrap-govern-labels.md` |
+| Secret rotation sweep | `prompts/bootstrap-govern-secret-rotation.md` |
+| License policy gate | `prompts/bootstrap-govern-license-gate.md` |
+| Spike coordinator | `prompts/bootstrap-decide-spike.md` |
+| Build vs buy | `prompts/bootstrap-decide-build-vs-buy.md` |
+| Threat modeling lite | `prompts/bootstrap-decide-threat-model.md` |
+| Deploy smoke | `prompts/bootstrap-operate-deploy-smoke.md` |
+| SLO review | `prompts/bootstrap-operate-slo.md` |
+| Cost review | `prompts/bootstrap-operate-cost.md` |
 
 Full library roadmap: [#64](https://github.com/GarrettEHill/prompt-tools/issues/64) · [`docs/WORKFLOW_ROADMAP.md`](docs/WORKFLOW_ROADMAP.md)
 
@@ -118,6 +143,31 @@ Orchestration loops and workflow units.
 - [`patterns/release-coordinator`](patterns/release-coordinator/) — version-cut coordinator + release slices
 - [`patterns/ship-checklist`](patterns/ship-checklist/) — release gate evaluation
 - [`patterns/rollback-plan`](patterns/rollback-plan/) — read-only rollback plan generator
+- [`patterns/regression-hunt`](patterns/regression-hunt/) — bisect-style regression investigation
+- [`patterns/incident-coordinator`](patterns/incident-coordinator/) — incident timeline and mitigations
+- [`patterns/flake-hunter`](patterns/flake-hunter/) — intermittent CI failure classification
+- [`patterns/postmortem`](patterns/postmortem/) — blameless postmortem generator
+- [`patterns/executive-brief`](patterns/executive-brief/) — one-screen stakeholder synthesis
+- [`patterns/umbrella-issue-composer`](patterns/umbrella-issue-composer/) — epic planning with child issues
+- [`patterns/stakeholder-status`](patterns/stakeholder-status/) — periodic status digest
+- [`patterns/migration-sweep`](patterns/migration-sweep/) — framework migration CCM coordinator
+- [`patterns/deprecation-enforcer`](patterns/deprecation-enforcer/) — deprecated API removal queue
+- [`patterns/codemod-coordinator`](patterns/codemod-coordinator/) — mechanical codemod chunks
+- [`patterns/config-drift-fix`](patterns/config-drift-fix/) — env/compose/CI alignment
+- [`patterns/doc-sync`](patterns/doc-sync/) — docs from source with round-trip check
+- [`patterns/runbook-generator`](patterns/runbook-generator/) — operability runbooks from manifests
+- [`patterns/changelog-from-reality`](patterns/changelog-from-reality/) — changelog from merged PRs
+- [`patterns/openapi-drift-fix`](patterns/openapi-drift-fix/) — spec patch to match handlers
+- [`patterns/oss-hygiene`](patterns/oss-hygiene/) — OSS community file checklist
+- [`patterns/label-policy-enforcement`](patterns/label-policy-enforcement/) — recurring label taxonomy sweep
+- [`patterns/secret-rotation-sweep`](patterns/secret-rotation-sweep/) — credential rotation governance
+- [`patterns/license-policy-gate`](patterns/license-policy-gate/) — dependency license gate
+- [`patterns/spike-coordinator`](patterns/spike-coordinator/) — time-boxed exploration
+- [`patterns/build-vs-buy`](patterns/build-vs-buy/) — structured build vs adopt comparison
+- [`patterns/threat-modeling-lite`](patterns/threat-modeling-lite/) — STRIDE-lite threat pass
+- [`patterns/deploy-smoke-coordinator`](patterns/deploy-smoke-coordinator/) — post-deploy smoke checks
+- [`patterns/slo-error-budget-review`](patterns/slo-error-budget-review/) — SLO and error budget review
+- [`patterns/cost-review`](patterns/cost-review/) — cloud cost driver review
 
 ## Adapters
 
@@ -131,6 +181,8 @@ Task-specific plug-ins for the Continuous Completion Model.
 - [`adapters/code-quality-lint-sweep`](adapters/code-quality-lint-sweep/)
 - [`adapters/full-repository-audit`](adapters/full-repository-audit/) — comprehensive audit beyond SonarQube
 - [`adapters/semver-release`](adapters/semver-release/) — release readiness and version-cut assembly
+- [`adapters/framework-upgrade`](adapters/framework-upgrade/) — migration-sweep plug-in for framework upgrades
+- [`adapters/env-compose-ci-drift`](adapters/env-compose-ci-drift/) — config drift detection for env/compose/CI
 
 ## Auditors
 
@@ -162,6 +214,11 @@ Shared rules and schemas used by multiple patterns.
 - [`primitives/decision-record-schema`](primitives/decision-record-schema/) — decision register
 - [`primitives/review-result-schema`](primitives/review-result-schema/) — PR review output
 - [`primitives/ship-gate-schema`](primitives/ship-gate-schema/) — release go/no-go gate output
+- [`primitives/investigation-result-schema`](primitives/investigation-result-schema/) — regression/flake/incident output
+- [`primitives/license-policy-template`](primitives/license-policy-template/) — allowed/denied license policy
+- [`primitives/operate-safety`](primitives/operate-safety/) — production safety rules for Operate family
+- [`primitives/smoke-result-schema`](primitives/smoke-result-schema/) — deploy smoke check output
+- [`primitives/cost-finding-schema`](primitives/cost-finding-schema/) — cost review findings
 
 ## Audit → remediate pipeline
 
