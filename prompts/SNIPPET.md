@@ -45,6 +45,23 @@ Change only `repo` and flags between runs. Personas, phases, and schemas load fr
 
 ---
 
+## Complete issue epic
+
+```text
+Complete issue epic (latest prompt-tools).
+
+Fetch and fully execute:
+https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-complete-epic.md
+
+Target: this workspace
+repo: <owner/repo>
+epic: <issue-number>
+```
+
+Coordinator + one disposable worker per child issue. Runs until the epic is fully closed or blocked.
+
+---
+
 ## Map — repo archaeology
 
 ```text
@@ -87,4 +104,38 @@ https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstr
 Target: this workspace
 repo: <owner/repo>
 pr: <number>
+```
+
+---
+
+## Ship — release coordinator
+
+```text
+Ship release (latest prompt-tools).
+
+Fetch and fully execute:
+https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-ship-release.md
+
+Target: this workspace
+repo: <owner/repo>
+version: <semver>
+```
+
+## Ship — gate checklist only
+
+```text
+Fetch https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-ship-checklist.md
+Target: this workspace
+repo: <owner/repo>
+version: <semver>
+```
+
+## Ship — rollback plan
+
+```text
+Fetch https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-ship-rollback.md
+Target: this workspace
+repo: <owner/repo>
+version: <semver>
+previous_tag: <tag>
 ```

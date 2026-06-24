@@ -21,6 +21,13 @@ create_issues: yes
 reports: chat-only
 ```
 
+| | |
+|---|---|
+| **You paste** | ~6 lines (snippet above) |
+| **Agent fetches** | `bootstrap-*.md` → manifest → patterns, personas, schemas |
+| **Target repo** | unchanged — no files copied in |
+| **Updates** | push to `main` here → next run uses new behavior automatically |
+
 After audit issues exist, remediate with:
 
 ```text
@@ -33,22 +40,34 @@ Target: this workspace
 repo: <owner/repo>
 ```
 
-| | |
-|---|---|
-| **You paste** | ~6 lines (snippet above) |
-| **Agent fetches** | `bootstrap-audit.md` → manifest → patterns, personas, schemas |
-| **Target repo** | unchanged — no files copied in |
-| **Updates** | push to `main` here → next run uses new behavior automatically |
+### Complete an issue epic (CCM sweep)
 
-More snippets: [`prompts/SNIPPET.md`](prompts/SNIPPET.md) — audit, map, review PR
+Paste this on **any repo** with a parent/umbrella GitHub issue. The coordinator works through child issues **one at a time** with fresh disposable workers until the epic is done or blocked:
+
+```text
+Complete issue epic (latest prompt-tools).
+
+Fetch and fully execute:
+https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-complete-epic.md
+
+Target: this workspace
+repo: <owner/repo>
+epic: <issue-number>
+```
+
+More snippets: [`prompts/SNIPPET.md`](prompts/SNIPPET.md) — audit, remediate, epic, map, review PR, ship
 
 ### Other remote workflows
 
 | Workflow | Bootstrap URL |
 |----------|----------------|
+| Complete epic | `prompts/bootstrap-complete-epic.md` |
 | Map repo | `prompts/bootstrap-map-archaeology.md` |
 | Onboarding brief | `prompts/bootstrap-map-onboarding.md` |
 | Review PR | `prompts/bootstrap-review-pr.md` |
+| Ship release | `prompts/bootstrap-ship-release.md` |
+| Ship checklist | `prompts/bootstrap-ship-checklist.md` |
+| Rollback plan | `prompts/bootstrap-ship-rollback.md` |
 
 Full library roadmap: [#64](https://github.com/GarrettEHill/prompt-tools/issues/64) · [`docs/WORKFLOW_ROADMAP.md`](docs/WORKFLOW_ROADMAP.md)
 
@@ -62,12 +81,21 @@ Full library roadmap: [#64](https://github.com/GarrettEHill/prompt-tools/issues/
 
 SonarQube is ingested where present; this system covers CI, deps, secrets, infra, contracts, and more.
 
+### What the epic run does
+
+1. Loads the parent issue and discovers child issues, checklists, and linked tasks
+2. Decomposes any broad umbrella criteria into worker-sized child issues
+3. Runs the CCM coordinator loop — one fresh disposable worker per item
+4. Opens PRs, validates, merges, and closes children as each completes
+5. Updates the parent with progress notes; closes the epic only when fully satisfied
+6. Stops with a final report when complete, blocked, or stop rules trigger
+
 ## Quick start
 
 1. Open the **target repo** in Cursor.
-2. Paste the audit snippet above (or from [`prompts/SNIPPET.md`](prompts/SNIPPET.md)).
+2. Paste a snippet from above (or [`prompts/SNIPPET.md`](prompts/SNIPPET.md)) — audit, remediate, or epic completion.
 3. Let the agent run — it pulls everything else from this repo on GitHub.
-4. Paste the remediate snippet when ready to fix findings.
+4. For audit → remediate flows, paste the remediate snippet after issues exist.
 
 ## Patterns
 
@@ -87,6 +115,9 @@ Orchestration loops and workflow units.
 - [`patterns/decision-archaeology`](patterns/decision-archaeology/) — decision register
 - [`patterns/blast-radius`](patterns/blast-radius/) — change impact map
 - [`patterns/pr-review`](patterns/pr-review/) — composable PR review personas
+- [`patterns/release-coordinator`](patterns/release-coordinator/) — version-cut coordinator + release slices
+- [`patterns/ship-checklist`](patterns/ship-checklist/) — release gate evaluation
+- [`patterns/rollback-plan`](patterns/rollback-plan/) — read-only rollback plan generator
 
 ## Adapters
 
@@ -99,6 +130,7 @@ Task-specific plug-ins for the Continuous Completion Model.
 - [`adapters/docs-backlog-cleanup`](adapters/docs-backlog-cleanup/)
 - [`adapters/code-quality-lint-sweep`](adapters/code-quality-lint-sweep/)
 - [`adapters/full-repository-audit`](adapters/full-repository-audit/) — comprehensive audit beyond SonarQube
+- [`adapters/semver-release`](adapters/semver-release/) — release readiness and version-cut assembly
 
 ## Auditors
 
@@ -129,6 +161,7 @@ Shared rules and schemas used by multiple patterns.
 - [`primitives/map-result-schema`](primitives/map-result-schema/) — map workflow output
 - [`primitives/decision-record-schema`](primitives/decision-record-schema/) — decision register
 - [`primitives/review-result-schema`](primitives/review-result-schema/) — PR review output
+- [`primitives/ship-gate-schema`](primitives/ship-gate-schema/) — release go/no-go gate output
 
 ## Audit → remediate pipeline
 

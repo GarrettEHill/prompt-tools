@@ -10,6 +10,10 @@ Copy from **[`SNIPPET.md`](SNIPPET.md)** — short text you paste into Cursor. T
 |--------|-----|
 | Audit | `https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-audit.md` |
 | Remediate | `https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-remediate.md` |
+| Complete epic | `https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-complete-epic.md` |
+| Ship release | `https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-ship-release.md` |
+| Ship checklist | `https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-ship-checklist.md` |
+| Rollback plan | `https://raw.githubusercontent.com/GarrettEHill/prompt-tools/main/prompts/bootstrap-ship-rollback.md` |
 
 Bootstraps load [`manifests/`](manifests/) → `patterns/`, `auditors/`, `primitives/` on demand.
 
