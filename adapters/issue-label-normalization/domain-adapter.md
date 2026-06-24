@@ -45,3 +45,15 @@ Final report must include:
 - issues updated count
 - deprecated labels replaced
 - policy gaps discovered
+
+## Scheduled sweep mode
+
+Used by [`label-policy-enforcement`](../../patterns/label-policy-enforcement/label-policy-enforcement.md) for recurring runs.
+
+```yaml
+mode: audit | fix          # audit = report only; fix = CCM queue per mismatch
+policy: <path>             # required — label-policy-template.md
+since_date: <YYYY-MM-DD>   # optional — limit to recently touched issues
+```
+
+Audit mode never edits issues. Fix mode uses one issue per disposable worker with user approval for `gh issue edit`.
